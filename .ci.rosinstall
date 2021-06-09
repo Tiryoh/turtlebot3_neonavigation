@@ -1,0 +1,20 @@
+- git:
+    local-name: turtlebot3
+    uri: https://github.com/ROBOTIS-GIT/turtlebot3.git
+    version: melodic-devel
+- git:
+    local-name: turtlebot3_msgs
+    uri: https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+    version: melodic-devel
+- git:
+    local-name: turtlebot3_simulations
+    uri: https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+    version: melodic-devel
+- git:
+    local-name: turtlebot3_gazebo_plugin
+    uri: https://github.com/ROBOTIS-GIT/turtlebot3_gazebo_plugin.git
+    version: master
+- git:
+    local-name: emcl
+    uri: https://github.com/ryuichiueda/emcl.git
+    version: master

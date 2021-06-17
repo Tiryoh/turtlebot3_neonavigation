@@ -2,26 +2,28 @@ costmap_3d:
   ang_resolution: 16
   linear_expand: 0.08
   linear_spread: 0.3
-  static_layers:
+  static_layers: # static_layers: all cells in the costmap are updated at once (usually for global map)
     - name: unknown
-      type: Costmap3dLayerUnknownHandle
+      type: Costmap3dLayerUnknownHandle # Set unknown cell's cost.
       unknown_cost: 100
+      overlay_mode: max
     - name: overlay0
-      type: Costmap3dLayerPlain
+      type: Costmap3dLayerPlain # Costmap layer without considering footprint.
       overlay_mode: max
       linear_expand: 0.0
       linear_spread: 0.0
-  layers:
+  layers: # layers: the costmap can be partially (usually for local map)
     - name: stop_propagation
-      type: Costmap3dLayerStopPropagation
+      type: Costmap3dLayerStopPropagation # Stop propagating parent layer's cost to the child. This can be used at the beginning of layer to ignore changes in static layers.
+      overlay_mode: max
     - name: overlay2
-      type: Costmap3dLayerPlain
+      type: Costmap3dLayerPlain # Costmap layer without considering footprint.
       overlay_mode: max
       linear_expand: 0.08
       linear_spread: 0.0
       keep_unknown: true
     - name: overlay1
-      type: Costmap3dLayerFootprint
+      type: Costmap3dLayerFootprint # Configuration space costmap layer according to the given footprint.
       overlay_mode: max
       linear_expand: 0.15
       linear_spread: 0.3

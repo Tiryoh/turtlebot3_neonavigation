@@ -26,7 +26,7 @@ Panels:
     Experimental: true
     Name: Time
     SyncMode: 0
-    SyncSource: Distance Map (debug output)
+    SyncSource: LaserScan
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -211,8 +211,18 @@ Visualization Manager:
       Color Scheme: costmap
       Draw Behind: false
       Enabled: true
-      Name: Local Costmap
+      Name: Local Costmap (independent map)
       Topic: /overlay1
+      Unreliable: false
+      Use Timestamp: false
+      Value: true
+    - Alpha: 0.699999988079071
+      Class: rviz/Map
+      Color Scheme: costmap
+      Draw Behind: false
+      Enabled: true
+      Name: Local Costmap (scan)
+      Topic: /overlay2
       Unreliable: false
       Use Timestamp: false
       Value: true
@@ -465,8 +475,8 @@ Visualization Manager:
       Scale: 149.7003631591797
       Target Frame: base_link
       Value: TopDownOrtho (rviz)
-      X: 0.4437207579612732
-      Y: -0.2735297679901123
+      X: 1.6056400537490845
+      Y: -0.3100750744342804
     Saved: ~
 Window Geometry:
   Displays:

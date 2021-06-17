@@ -19,11 +19,34 @@
   <arg name="use_footprint" default="true" />
   <arg name="footprint" default="[[0.35, -0.22], [0.35, 0.22], [-0.35, 0.22], [-0.35, -0.22]]" />
 
-  <param name="neonavigation_compatible" value="1" />
-  <rosparam command="load" file="$(find turtlebot3_neonavigation)/config/navigate.yaml"/>
+  <arg name="use_independent_local_map" default="false"/>
 
-  <node pkg="costmap_cspace" type="costmap_3d" name="costmap_3d" output="$(arg output_info)" >
+  <param name="neonavigation_compatible" value="1" />
+  <rosparam command="load" file="$(find turtlebot3_neonavigation)/config/navigate.yaml" />
+
+  <node pkg="costmap_cspace" type="costmap_3d" name="costmap_3d" output="$(arg output_info)">
     <rosparam param="footprint" if="$(arg use_footprint)" subst_value="True">$(arg footprint)</rosparam>
+  </node>
+
+  <node pkg="costmap_cspace" type="largemap_to_map" name="largemap_to_map" output="$(arg output_info)" if="$(arg use_independent_local_map)">
+    <remap from="map" to="map_with_local_objects" />
+    <remap from="map_local" to="overlay1" />
+    <param name="width" value="60" />
+    <param name="hz" value="1.5" />
+    <param name="round_local_map" value="false" />
+    <param name="simulate_occlusion" value="true" />
+  </node>
+
+  <node pkg="costmap_cspace" type="laserscan_to_map" name="laserscan_to_map" output="$(arg output_info)">
+    <!-- <remap from="scan" to="scan" /> -->
+    <!-- <remap from="map" to="map" /> -->
+    <remap from="map_local" to="overlay2" />
+    <param name="width" value="200" />
+    <param name="resolution" value="0.05" />
+    <param name="hz" value="1.0" />
+    <param name="accum_duration" value="1.0" />
+    <param name="global_frame" value="map" />
+    <param name="robot_frame" value="base_footprint" />
   </node>
 
   <node pkg="planner_cspace" type="planner_3d" name="planner_3d" output="$(arg output_info)">

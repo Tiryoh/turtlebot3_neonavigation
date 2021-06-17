@@ -3,6 +3,8 @@
   <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
   <arg name="localization" default="amcl" doc="model type [amcl, emcl]"/>
   <arg name="map_file" default="$(find turtlebot3_neonavigation)/maps/turtlebot3_world.yaml"/>
+  <arg name="map_file_with_local_objects" default="$(find turtlebot3_neonavigation)/maps/turtlebot3_world.yaml"/>
+  <arg name="use_independent_local_map" default="false"/>
   <arg name="use_map_server" default="true" />
   <arg name="open_rviz" default="true"/>
 
@@ -12,13 +14,22 @@
   </include>
 
   <!-- Map server -->
-  <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)" if="$(arg use_map_server)" />
+  <group if="$(arg use_map_server)">
+    <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)" />
+    <!-- <node pkg="multi_map_server" type="multi_map_server" name="multi_map_server" args="$(arg map_file)" if="$(arg use_map_server)" /> -->
+
+    <node pkg="map_server" type="map_server" name="map_server_local" args="$(arg map_file_with_local_objects)" if="$(arg use_independent_local_map)">
+      <remap from="map" to="map_with_local_objects" />
+    </node>
+  </group>
 
   <!-- AMCL/EMCL -->
   <include file="$(find turtlebot3_neonavigation)/launch/$(arg localization).launch" />
 
   <!-- neonavigation -->
-  <include file="$(find turtlebot3_neonavigation)/launch/neonavigation.launch" />
+  <include file="$(find turtlebot3_neonavigation)/launch/neonavigation.launch">
+    <arg name="use_independent_local_map" value="$(arg use_independent_local_map)" />
+  </include>
 
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 

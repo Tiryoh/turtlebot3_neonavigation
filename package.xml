@@ -12,6 +12,7 @@
   <buildtool_depend>catkin</buildtool_depend>
   <depend>amcl</depend>
   <depend>emcl</depend>
+  <depend>laser_scan_matcher</depend>
   <depend>map_server</depend>
   <depend>neonavigation</depend>
   <depend>rviz</depend>

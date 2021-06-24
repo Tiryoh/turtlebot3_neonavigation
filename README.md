@@ -65,7 +65,7 @@ export TURTLEBOT3_MODEL=burger
 roslaunch turtlebot3_neonavigation turtlebot3_neonavigation.launch map_file:=$(rospack find turtlebot3_neonavigation)/maps/turtlebot3_world.yaml localization:=amc
 ```
 
-![Image from Gyazo](https://i.gyazo.com/43488587b269b26a2b296754eb770731.gif)
+![Image from Gyazo](https://i.gyazo.com/2ea6a2a6bcb3a4054eac1ed1b10f294f.gif)
 
 ##### emcl
 
@@ -76,4 +76,4 @@ export TURTLEBOT3_MODEL=burger
 roslaunch turtlebot3_neonavigation turtlebot3_neonavigation.launch map_file:=$(rospack find turtlebot3_neonavigation)/maps/turtlebot3_world.yaml localization:=emc
 ```
 
-![Image from Gyazo](https://i.gyazo.com/24cd4a4faf06af6eba50901424270924.gif)
+![Image from Gyazo](https://i.gyazo.com/cfcfebb709a163ac8756b145df230341.gif)

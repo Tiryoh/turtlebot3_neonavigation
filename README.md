@@ -62,7 +62,7 @@ roslaunch turtlebot3_gazebo turtlebot3_world.launch
 
 ```
 export TURTLEBOT3_MODEL=burger
-roslaunch turtlebot3_neonavigation turtlebot3_neonavigation.launch map_file:=$(rospack find turtlebot3_neonavigation)/maps/turtlebot3_world.yaml localization:=amc
+roslaunch turtlebot3_neonavigation turtlebot3_neonavigation.launch map_file:=$(rospack find turtlebot3_neonavigation)/maps/turtlebot3_world.yaml localization:=amcl
 ```
 
 ![Image from Gyazo](https://i.gyazo.com/2ea6a2a6bcb3a4054eac1ed1b10f294f.gif)
@@ -73,7 +73,7 @@ roslaunch turtlebot3_neonavigation turtlebot3_neonavigation.launch map_file:=$(r
 
 ```
 export TURTLEBOT3_MODEL=burger
-roslaunch turtlebot3_neonavigation turtlebot3_neonavigation.launch map_file:=$(rospack find turtlebot3_neonavigation)/maps/turtlebot3_world.yaml localization:=emc
+roslaunch turtlebot3_neonavigation turtlebot3_neonavigation.launch map_file:=$(rospack find turtlebot3_neonavigation)/maps/turtlebot3_world.yaml localization:=emcl
 ```
 
 ![Image from Gyazo](https://i.gyazo.com/cfcfebb709a163ac8756b145df230341.gif)

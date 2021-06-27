@@ -1,0 +1,28 @@
+version: "3.4"
+
+# template
+x-neonavigation-apps: &common
+    image: tiryoh/turtlebot3_neonavigation:melodic
+    build:
+        context: .
+        dockerfile: ./.docker/Dockerfile
+    command: ["terminator"]
+    network_mode: "host"
+    environment:
+        QT_X11_NO_MITSHM: 1
+        DISPLAY: $DISPLAY
+        NVIDIA_VISIBLE_DEVICES: all
+        NVIDIA_DRIVER_CAPABILITIES: all
+    volumes:
+        - "/tmp/.X11-unix:/tmp/.X11-unix:rw"
+        - "$HOME/.Xauthority:/root/.Xauthority"
+        - ./.ci.rosinstall:/root/catkin_ws/src/turtlebot3_neonavigation/.ci.rosinstall
+
+services:
+    debugger:
+        <<: *common
+        privileged: true
+        runtime: nvidia
+    nogpu-debugger:
+        <<: *common
+        privileged: true
